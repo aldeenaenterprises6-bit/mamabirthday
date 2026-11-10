@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mama ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  color: #79536f;
+  background: linear-gradient(135deg,#fff0f6,#eee8ff,#fff9e9);
+  overflow-x: hidden;
+}
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 15px;
+  text-align: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 680px;
+  padding: 35px 25px;
+  background: rgba(255,255,255,.76);
+  border: 2px solid white;
+  border-radius: 30px;
+  box-shadow: 0 15px 50px rgba(150,100,160,.16);
+}
+
+h1 {
+  color: #bd79a8;
+  font-size: clamp(36px,8vw,62px);
+  margin: 20px 0;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.flowers {
+  font-size: 48px;
+  animation: float 3s ease-in-out infinite;
+}
+
+button {
+  border: 0;
+  border-radius: 40px;
+  padding: 15px 30px;
+  margin: 12px 5px;
+  background: linear-gradient(45deg,#e6a3c7,#ad9ae5);
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px #dfc2e5;
+  transition: .3s;
+}
+
+button:hover {
+  transform: scale(1.07);
+}
+
+#birthday {
+  display: none;
+}
+
+#letter {
+  display: none;
+  animation: openLetter 1.2s ease;
+}
+
+.envelope {
+  font-size: 95px;
+  cursor: pointer;
+  animation: float 2s infinite;
+}
+
+.decoration {
+  position: fixed;
+  top: -50px;
+  pointer-events: none;
+  z-index: 10;
+  animation: falling linear infinite;
+}
+
+.butterfly {
+  position: fixed;
+  left: -60px;
+  font-size: 30px;
+  pointer-events: none;
+  z-index: 5;
+  animation: flyAcross 13s linear infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-13px); }
+}
+
+@keyframes falling {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes flyAcross {
+  from { left: -60px; }
+  to { left: 110vw; }
+}
+
+@keyframes openLetter {
+  from { opacity: 0; transform: translateY(30px) scale(.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes sparkle {
+  50% { text-shadow: 0 0 25px #ed9fcf; }
+}
+
+h1 {
+  animation: sparkle 3s infinite;
+}
+
+@media(max-width:480px) {
+  .card { padding: 28px 17px; }
+  p { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="birthdaySong" src="mama-song.mp3" loop preload="auto"></audio>
+
+<!-- Welcome Screen -->
+
+<section class="screen" id="welcome">
+  <div class="card">
+
+    <div class="flowers">🌸 🌷 🦋 🌷 🌸</div>
+
+    <h1>A Special Surprise</h1>
+
+    <p>
+      Someone very special deserves
+      a day full of love, happiness
+      and beautiful memories.
+    </p>
+
+    <p>Made with endless love, just for you ❤️</p>
+
+    <button onclick="startSurprise()">
+      Open Your Surprise 💌
+    </button>
+
+    <div class="flowers">🌼 🌿 🌼</div>
+
+  </div>
+</section>
+
+
+<!-- Birthday Screen -->
+
+<section class="screen" id="birthday">
+  <div class="card">
+
+    <div class="flowers">🌷 🦋 🌸 🦋 🌷</div>
+
+    <h1>Happy Birthday Mama!</h1>
+
+    <p>
+      Today is all about celebrating
+      the most beautiful blessing in my life.
+    </p>
+
+    <div class="envelope" onclick="openLetter()">
+      💌
+    </div>
+
+    <p>Tap the letter to open your special message</p>
+
+    <div id="letter">
+
+      <h1 style="font-size:35px">Dear Mama ❤️</h1>
+
+      <p>
+        You are the reason behind so many
+        beautiful moments in my life.<br><br>
+
+        Your love is my greatest strength,
+        your prayers are my biggest blessing,
+        and your smile makes my world brighter.<br><br>
+
+        May Allah bless you with good health,
+        endless happiness, peace and a long,
+        beautiful life.<br><br>
+
+        No words can ever explain how much
+        you mean to me.<br><br>
+
+        Thank you for everything, Mama.
+        I love you more than words can say.
+      </p>
+
+      <div class="flowers">💐 🌸 ❤️ 🌸 💐</div>
+
+      <h2 style="color:#bd79a8">
+        Forever Your Loving Child ❤️
+      </h2>
+
+    </div>
+
+    <button onclick="celebrate()">
+      Celebrate Mama! 🎉
+    </button>
+
+    <button onclick="location.reload()">
+      Watch Again ✨
+    </button>
+
+  </div>
+</section>
+
+
+<script>
+
+function startSurprise() {
+  const song = document.getElementById("birthdaySong");
+  song.volume = 0.8;
+  song.play().catch(() => {});
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("birthday").style.display = "flex";
+
+  window.scrollTo(0,0);
+}
+
+function openLetter() {
+  document.getElementById("letter").style.display = "block";
+}
+
+function celebrate() {
+
+  const items = ["🎉","💗","🌸","✨","🌷","🦋","💐"];
+
+  for(let i=0; i<65; i++) {
+
+    let item = document.createElement("div");
+
+    item.className = "decoration";
+
+    item.innerHTML = items[
+      Math.floor(Math.random()*items.length)
+    ];
+
+    item.style.left = Math.random()*100+"vw";
+    item.style.animationDuration = (3+Math.random()*5)+"s";
+    item.style.animationDelay = Math.random()*2+"s";
+    item.style.fontSize = (20+Math.random()*20)+"px";
+
+    document.body.appendChild(item);
+
+    setTimeout(() => item.remove(),9000);
+  }
+}
+
+
+// Floating butterflies
+
+for(let i=0; i<3; i++) {
+
+  let butterfly = document.createElement("div");
+
+  butterfly.className = "butterfly";
+  butterfly.innerHTML = "🦋";
+
+  butterfly.style.top = (15+i*28)+"vh";
+  butterfly.style.animationDelay = (i*4)+"s";
+
+  document.body.appendChild(butterfly);
+}
+
+</script>
+
+</body>
+</html>
